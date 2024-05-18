@@ -92,6 +92,9 @@ def val(
     epoch,
     best_acc,
 ):
+    loss = 0
+    total = 0
+    correct = 0
     model.eval()
     for batch_idx, (images, labels) in enumerate(val_dataloader):
         images, labels = images.to(device), labels.to(device)
