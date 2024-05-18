@@ -93,7 +93,7 @@ def val(
     best_acc,
 ):
     model.eval()
-    for batch_idx, (inputs, labels) in enumerate(val_dataloader):
+    for batch_idx, (images, labels) in enumerate(val_dataloader):
         images, labels = images.to(device), labels.to(device)
 
         predictions = model(images)
@@ -144,7 +144,7 @@ def test(
     model.load_state_dict(checkpoint['net'])
 
     model.eval()
-    for batch_idx, (inputs, labels) in enumerate(test_dataloader):
+    for batch_idx, (images, labels) in enumerate(test_dataloader):
         images, labels = images.to(device), labels.to(device)
         predictions = model(images)
         first_loss = criterion(predictions, labels)
