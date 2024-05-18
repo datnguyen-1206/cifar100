@@ -164,3 +164,4 @@ def test(
 
         logging_dict['TRAIN/loss'] = loss_mean
         logging_dict['TEST/acc'] = acc
+        # Add heatmap https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
