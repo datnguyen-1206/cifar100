@@ -30,15 +30,12 @@ def train(
     device,
     logging_dict,
 ):
-    print("checkpoint1")
     model.train()
-    print("checkpoint2")
     loss = 0
     total = 0
     correct = 0
     print (train_dataloader)
     for batch_index, (images, labels) in enumerate(train_dataloader):
-        print("checkpoint3")
         images, labels = images.to(device), labels.to(device)
         opt_name = type(optimizer).__name__
         if opt_name == 'SGD':
@@ -52,12 +49,9 @@ def train(
         
         elif opt_name == 'SAM':
             # first forward-backward step
-            print("checkpoint4")
             enable_running_stats(model)  # <- this is the important line
-            print("checkpoint5")
             with torch.cuda.amp.autocast():
                 predictions = model(images)
-                print("checkpoint6")
                 first_loss = criterion(predictions, labels)
             first_loss.backward()
             optimizer.first_step(zero_grad=True)

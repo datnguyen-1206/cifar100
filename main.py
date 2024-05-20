@@ -22,11 +22,7 @@ current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 # 0. SETUP CONFIGURATION
 parser = argparse.ArgumentParser(description='PyTorch Training')
 parser.add_argument('--experiment', default='example', type=str, help='path to YAML config file')
-parser.add_argument('--alpha', default=None, type=float, help='FZSAM alpha')
-parser.add_argument('--alpha1', default=None, type=float, help='VARSAM alpha1')
-parser.add_argument('--alpha2', default=None, type=float, help='VARSAM alpha2')
 parser.add_argument('--rho', default=None, type=float, help='SAM rho')
-parser.add_argument('--inner_rho', default=None, type=float, help='Inner rho')
 parser.add_argument('--model_name', default=None, type=str, help='Model name')
 parser.add_argument('--opt_name', default=None, type=str, help='Optimization name')
 parser.add_argument('--project_name', default=None, type=str, help='Wandb Project name')
@@ -44,7 +40,6 @@ initialize(seed)
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 best_acc, start_epoch = 0, 0
 
-EPOCHS = cfg['trainer']['epochs'] 
 
 print('==> Initialize Logging Framework..')
 logging_name = get_logging_name(cfg)
