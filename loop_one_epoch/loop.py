@@ -72,7 +72,7 @@ def train(
                 % (loss_mean, acc, correct, total))
         
         logging_dict['TRAIN/loss'] = loss_mean
-        logging_dict['TEST/acc'] = acc
+        logging_dict['TRAIN/acc'] = acc
 
 
 @torch.no_grad()
@@ -121,8 +121,8 @@ def val(
         best_acc = acc
 
         logging_dict['VAL/best_acc'] = best_acc
-        logging_dict['TRAIN/loss'] = loss_mean
-        logging_dict['TEST/acc'] = acc
+        logging_dict['VAL/loss'] = loss_mean
+        logging_dict['VAL/acc'] = acc
     return best_acc
 
 @torch.no_grad()
@@ -156,6 +156,6 @@ def test(
         progress_bar(batch_idx, len(test_dataloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                     % (loss_mean, acc, correct, total))
 
-        logging_dict['TRAIN/loss'] = loss_mean
+        logging_dict['TEST/loss'] = loss_mean
         logging_dict['TEST/acc'] = acc
         # Add heatmap https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
