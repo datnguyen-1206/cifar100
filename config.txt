@@ -1,20 +1,12 @@
-dataloader:
-  data_name: cifar100
-  batch_size: 128
-model:
-  model_name: resnet18
-optimizer:
-  opt_name: sam
-  opt_hyperparameter:
-    lr: 0.1
-    momentum: 0.9
-    weight_decay: 0.001
-    rho: 0.1
-scheduler:
-  sch_name: cosine
-  sch_hyperparameter:
-    T_max: 200
-trainer:
-  epochs: 200
-logging:
-  framework_name: tensorboard
+def override_cfg(cfg, args):
+    if args.rho is not None:
+        cfg['optimizer']['opt_hyperparameter']['rho'] = args.rho
+    if args.model_name is not None:
+        cfg['model']['model_name'] = args.model_name
+    if args.opt_name is not None:
+        cfg['optimizer']['opt_name'] = args.opt_name
+    if args.project_name is not None:
+        cfg['logging']['project_name'] = args.project_name
+    if args.framework_name is not None:
+        cfg['logging']['framework_name'] = args.framework_name
+    return cfg
